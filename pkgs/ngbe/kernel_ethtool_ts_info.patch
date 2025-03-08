@@ -1,0 +1,26 @@
+diff --color -ur a/kcompat-generator.sh b/kcompat-generator.sh
+--- a/kcompat-generator.sh
++++ b/kcompat-generator.sh
+@@ -100,6 +100,7 @@
+ 	eth='include/linux/ethtool.h'
+ 	ueth='include/uapi/linux/ethtool.h'
+ 	gen HAVE_ETHTOOL_KEEE if struct ethtool_keee in "$eth"
++	gen HAVE_ETHTOOL_KERNEL_TS_INFO if struct kernel_ethtool_ts_info in "$eth"
+ 	gen HAVE_ETHTOOL_RXFH_RXFHPARAMS if method get_rxfh of ethtool_ops matches 'struct ethtool_rxfh_param \\*' in "$eth"
+ 	gen HAVE_ETHTOOL_COALESCE_EXTACK if method get_coalesce of ethtool_ops matches 'struct kernel_ethtool_coalesce \\*' in "$eth"
+ 	gen HAVE_ETHTOOL_EXTENDED_RINGPARAMS if method get_ringparam of ethtool_ops matches 'struct kernel_ethtool_ringparam \\*' in "$eth"
+diff --color -ur a/ngbe_ethtool.c b/ngbe_ethtool.c
+--- a/ngbe_ethtool.c
++++ b/ngbe_ethtool.c
+@@ -3572,7 +3572,11 @@
+ 
+ #ifdef HAVE_ETHTOOL_GET_TS_INFO
+ static int ngbe_get_ts_info(struct net_device *dev,
++#ifdef HAVE_ETHTOOL_KERNEL_TS_INFO
++			     struct kernel_ethtool_ts_info *info)
++#else
+ 			     struct ethtool_ts_info *info)
++#endif
+ {
+ 	struct ngbe_adapter *adapter = netdev_priv(dev);
+ 

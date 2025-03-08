@@ -1,0 +1,28 @@
+diff --color -ur a/kcompat.h b/kcompat.h
+--- a/kcompat.h
++++ b/kcompat.h
+@@ -7188,6 +7188,9 @@
+ #define HAVE_TC_FLOW_INDIR_BLOCK_CLEANUP
+ #define HAVE_XDP_BUFF_FRAME_SZ
+ #define HAVE_MEM_TYPE_XSK_BUFF_POOL
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6,10,0))
++#define HAVE_UNARY_XSK_BUFF_DMA_SYNC_FOR_CPU
++#endif /* 6.10.0 */
+ #endif /* 5.8.0 */
+ #if (RHEL_RELEASE_CODE && (RHEL_RELEASE_CODE >= RHEL_RELEASE_VERSION(8,3)))
+ #define HAVE_TC_FLOW_INDIR_DEV
+diff --color -ur a/ngbe_xsk.c b/ngbe_xsk.c
+--- a/ngbe_xsk.c
++++ b/ngbe_xsk.c
+@@ -840,7 +840,11 @@
+ 		xdp_res = ngbe_run_xdp_zc(adapter, rx_ring, &xdp);
+ #else
+ 		bi->xdp->data_end = bi->xdp->data + size;
++#ifdef HAVE_UNARY_XSK_BUFF_DMA_SYNC_FOR_CPU
++		xsk_buff_dma_sync_for_cpu(bi->xdp);
++#else
+ 		xsk_buff_dma_sync_for_cpu(bi->xdp, rx_ring->xsk_pool);
++#endif
+ 		xdp_res = ngbe_run_xdp_zc(adapter, rx_ring, bi->xdp);
+ #endif
+ 

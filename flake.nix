@@ -11,6 +11,9 @@
   outputs =
     inputs@{ flake-parts, treefmt-nix, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      flake = {
+        modulePackages.ngbe = ./pkgs/ngbe;
+      };
       systems = [ "x86_64-linux" ];
       imports = [
         treefmt-nix.flakeModule
