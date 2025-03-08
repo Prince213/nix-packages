@@ -11,5 +11,18 @@
   outputs =
     inputs@{ flake-parts, treefmt-nix, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [
+        treefmt-nix.flakeModule
+      ];
+      perSystem = {
+        treefmt = {
+          projectRootFile = "flake.nix";
+          settings.global.excludes = [
+            "README.md"
+          ];
+          programs.nixfmt.enable = true;
+        };
+      };
     };
 }
