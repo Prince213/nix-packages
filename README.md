@@ -1,5 +1,23 @@
 # nix-packages
 
+## Packages
+
+### ngbe
+
+```nix
+{ config, nix-packages, ... }:
+{
+  boot.extraModulePackages =
+    let
+      inherit (config.boot.kernelPackages) callPackage;
+      inherit (nix-packages.modulePackages) ngbe;
+    in
+    [
+      (callPackage ngbe { })
+    ];
+}
+```
+
 ## License
 
 ```
