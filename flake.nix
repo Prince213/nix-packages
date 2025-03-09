@@ -22,7 +22,11 @@
 
         overlays = {
           default = self: super: {
+            dae-beta = self.callPackage ./pkgs/dae-beta { };
             firewalld = super.callPackage ./pkgs/firewalld { };
+          };
+          dae-beta = self: super: {
+            dae-beta = self.callPackage ./pkgs/dae-beta { };
           };
           firewalld = self: super: {
             firewalld = super.callPackage ./pkgs/firewalld { };
@@ -42,7 +46,7 @@
           };
 
           packages = {
-            inherit (pkgs) firewalld;
+            inherit (pkgs) dae-beta firewalld;
           };
           treefmt = {
             projectRootFile = "flake.nix";
