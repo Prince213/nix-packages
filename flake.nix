@@ -24,6 +24,7 @@
           default = self: super: {
             dae-beta = self.callPackage ./pkgs/dae-beta { };
             firewalld = super.callPackage ./pkgs/firewalld { };
+            mccgdi = super.callPackage ./pkgs/mccgdi { };
             sing-box-beta = self.callPackage ./pkgs/sing-box-beta { };
             wubi98-fonts = self.callPackage ./pkgs/wubi98-fonts { };
           };
@@ -32,6 +33,9 @@
           };
           firewalld = self: super: {
             firewalld = super.callPackage ./pkgs/firewalld { };
+          };
+          mccgdi = self: super: {
+            mccgdi = super.callPackage ./pkgs/mccgdi { };
           };
           sing-box-beta = self: super: {
             sing-box-beta = self.callPackage ./pkgs/sing-box-beta { };
@@ -57,6 +61,7 @@
             inherit (pkgs)
               dae-beta
               firewalld
+              mccgdi
               sing-box-beta
               wubi98-fonts
               ;
