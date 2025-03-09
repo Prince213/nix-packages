@@ -18,15 +18,20 @@
       imports = [
         treefmt-nix.flakeModule
       ];
-      perSystem = {
-        treefmt = {
-          projectRootFile = "flake.nix";
-          settings.global.excludes = [
-            "LICENSE"
-            "README.md"
-          ];
-          programs.nixfmt.enable = true;
+      perSystem =
+        { pkgs, ... }:
+        {
+          packages = {
+            firewalld = pkgs.callPackage ./pkgs/firewalld { };
+          };
+          treefmt = {
+            projectRootFile = "flake.nix";
+            settings.global.excludes = [
+              "LICENSE"
+              "README.md"
+            ];
+            programs.nixfmt.enable = true;
+          };
         };
-      };
     };
 }
