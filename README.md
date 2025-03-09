@@ -2,6 +2,10 @@
 
 ## Packages
 
+### firewalld
+
+<https://git.sr.ht/~prince213/firewalld-nix>.
+
 ### ngbe
 
 ```nix
