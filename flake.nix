@@ -24,12 +24,16 @@
           default = self: super: {
             dae-beta = self.callPackage ./pkgs/dae-beta { };
             firewalld = super.callPackage ./pkgs/firewalld { };
+            sing-box-beta = self.callPackage ./pkgs/sing-box-beta { };
           };
           dae-beta = self: super: {
             dae-beta = self.callPackage ./pkgs/dae-beta { };
           };
           firewalld = self: super: {
             firewalld = super.callPackage ./pkgs/firewalld { };
+          };
+          sing-box-beta = self: super: {
+            sing-box-beta = self.callPackage ./pkgs/sing-box-beta { };
           };
         };
       };
@@ -46,7 +50,7 @@
           };
 
           packages = {
-            inherit (pkgs) dae-beta firewalld;
+            inherit (pkgs) dae-beta firewalld sing-box-beta;
           };
           treefmt = {
             projectRootFile = "flake.nix";
