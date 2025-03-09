@@ -25,6 +25,7 @@
             dae-beta = self.callPackage ./pkgs/dae-beta { };
             firewalld = super.callPackage ./pkgs/firewalld { };
             sing-box-beta = self.callPackage ./pkgs/sing-box-beta { };
+            wubi98-fonts = self.callPackage ./pkgs/wubi98-fonts { };
           };
           dae-beta = self: super: {
             dae-beta = self.callPackage ./pkgs/dae-beta { };
@@ -34,6 +35,9 @@
           };
           sing-box-beta = self: super: {
             sing-box-beta = self.callPackage ./pkgs/sing-box-beta { };
+          };
+          wubi98-fonts = self: super: {
+            wubi98-fonts = self.callPackage ./pkgs/wubi98-fonts { };
           };
         };
       };
@@ -50,7 +54,12 @@
           };
 
           packages = {
-            inherit (pkgs) dae-beta firewalld sing-box-beta;
+            inherit (pkgs)
+              dae-beta
+              firewalld
+              sing-box-beta
+              wubi98-fonts
+              ;
           };
           treefmt = {
             projectRootFile = "flake.nix";
