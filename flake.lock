@@ -20,16 +20,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1741310760,
-        "narHash": "sha256-aizILFrPgq/W53Jw8i0a1h1GZAAKtlYOrG/A5r46gVM=",
-        "owner": "NixOS",
+        "lastModified": 1741774741,
+        "narHash": "sha256-dzLooqA9F4sz/B3Bfs40Ze+pmCG1ebbqD1Gmd491RKM=",
+        "owner": "Prince213",
         "repo": "nixpkgs",
-        "rev": "de0fe301211c267807afd11b12613f5511ff7433",
+        "rev": "c2b4106a25c58dbdc25c0cd9d1834fd37645d37b",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "owner": "Prince213",
+        "ref": "pyqt6-dbus",
         "repo": "nixpkgs",
         "type": "github"
       }
