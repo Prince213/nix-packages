@@ -13,12 +13,12 @@
   kmod,
   lib,
   libnotify,
-  libsForQt5,
   libxml2,
   libxslt,
   networkmanager,
   pkg-config,
   python3,
+  qt6,
   stdenv,
   sysctl,
   wrapGAppsHook3,
@@ -30,7 +30,7 @@ let
       dbus-python
       nftables
       pygobject3
-      pyqt5
+      pyqt6
     ]
   );
 in
@@ -54,7 +54,7 @@ stdenv.mkDerivation rec {
     ipset
     iptables
     kmod
-    libsForQt5.wrapQtAppsHook
+    qt6.wrapQtAppsHook
     libxml2
     libxslt
     pkg-config
@@ -73,6 +73,7 @@ stdenv.mkDerivation rec {
     libnotify
     networkmanager
     python3'
+    qt6.qtbase
     sysctl
   ];
 
