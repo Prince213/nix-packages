@@ -6,6 +6,8 @@
 
 <https://git.sr.ht/~prince213/firewalld-nix>.
 
+<https://github.com/NixOS/nixpkgs/pull/389437>.
+
 ### ngbe
 
 ```nix
