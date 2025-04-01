@@ -1,7 +1,6 @@
 {
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:Prince213/nixpkgs/pyqt6-dbus";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -24,16 +23,12 @@
         overlays = {
           default = self: super: {
             dae-beta = self.callPackage ./pkgs/dae-beta { };
-            firewalld = super.callPackage ./pkgs/firewalld { };
             mccgdi = super.callPackage ./pkgs/mccgdi { };
             sing-box-beta = self.callPackage ./pkgs/sing-box-beta { };
             wubi98-fonts = self.callPackage ./pkgs/wubi98-fonts { };
           };
           dae-beta = self: super: {
             dae-beta = self.callPackage ./pkgs/dae-beta { };
-          };
-          firewalld = self: super: {
-            firewalld = super.callPackage ./pkgs/firewalld { };
           };
           mccgdi = self: super: {
             mccgdi = super.callPackage ./pkgs/mccgdi { };
@@ -61,7 +56,6 @@
           packages = {
             inherit (pkgs)
               dae-beta
-              firewalld
               mccgdi
               sing-box-beta
               wubi98-fonts
