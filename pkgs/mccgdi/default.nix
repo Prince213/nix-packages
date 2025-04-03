@@ -7,7 +7,6 @@
   libgcc,
   cups,
   ghostscript,
-  ...
 }:
 
 stdenv.mkDerivation rec {
