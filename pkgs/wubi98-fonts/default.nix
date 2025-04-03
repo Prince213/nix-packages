@@ -3,7 +3,6 @@
   stdenvNoCC,
   fetchFromGitHub,
   p7zip,
-  ...
 }:
 
 stdenvNoCC.mkDerivation {
