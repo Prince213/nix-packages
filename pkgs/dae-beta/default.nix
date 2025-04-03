@@ -1,7 +1,7 @@
 { dae }:
 
 dae.overrideAttrs (previousAttrs: rec {
-  pname = previousAttrs.pname + "dae-beta";
+  pname = previousAttrs.pname + "-beta";
   version = "1.0.0rc2";
   src = previousAttrs.src.override {
     rev = "v${version}";
