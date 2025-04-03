@@ -1,4 +1,4 @@
-{ sing-box, ... }:
+{ sing-box }:
 
 sing-box.overrideAttrs (previousAttrs: rec {
   pname = previousAttrs.pname + "-beta";
