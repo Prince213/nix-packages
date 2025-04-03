@@ -1,4 +1,4 @@
-{ dae, ... }:
+{ dae }:
 
 dae.overrideAttrs (previousAttrs: rec {
   pname = previousAttrs.pname + "dae-beta";
