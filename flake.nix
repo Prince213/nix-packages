@@ -9,7 +9,13 @@
   };
 
   outputs =
-    inputs@{ flake-parts, treefmt-nix, ... }:
+    inputs@{
+      self,
+      nixpkgs,
+      flake-parts,
+      treefmt-nix,
+      ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         treefmt-nix.flakeModule
@@ -18,11 +24,26 @@
         "aarch64-linux"
         "x86_64-linux"
       ];
-      perSystem = {
-        treefmt = {
-          projectRootFile = "flake.nix";
-          programs.nixfmt.enable = true;
-        };
+      flake.overlays.default = self: super: {
+        cursor = super.callPackage ./pkgs/cursor { };
       };
+      perSystem =
+        { system, pkgs, ... }:
+        {
+          _module.args.pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            overlays = [ self.overlays.default ];
+          };
+
+          packages = {
+            inherit (pkgs) cursor;
+          };
+
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+          };
+        };
     };
 }
