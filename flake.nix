@@ -26,6 +26,7 @@
       ];
       flake.overlays.default = self: super: {
         cursor = super.callPackage ./pkgs/cursor { };
+        wubi98-fonts = super.callPackage ./pkgs/wubi98-fonts { };
       };
       perSystem =
         { system, pkgs, ... }:
@@ -37,7 +38,7 @@
           };
 
           packages = {
-            inherit (pkgs) cursor;
+            inherit (pkgs) cursor wubi98-fonts;
           };
 
           treefmt = {
