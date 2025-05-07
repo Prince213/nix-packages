@@ -28,6 +28,7 @@
         modulePackages.ngbe = ./pkgs/ngbe;
         overlays.default = self: super: {
           cursor = super.callPackage ./pkgs/cursor { };
+          mccgdi = super.callPackage ./pkgs/mccgdi { };
           wubi98-fonts = super.callPackage ./pkgs/wubi98-fonts { };
         };
       };
@@ -41,7 +42,7 @@
           };
 
           packages = {
-            inherit (pkgs) cursor wubi98-fonts;
+            inherit (pkgs) cursor mccgdi wubi98-fonts;
           };
 
           treefmt = {
