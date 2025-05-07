@@ -24,9 +24,12 @@
         "aarch64-linux"
         "x86_64-linux"
       ];
-      flake.overlays.default = self: super: {
-        cursor = super.callPackage ./pkgs/cursor { };
-        wubi98-fonts = super.callPackage ./pkgs/wubi98-fonts { };
+      flake = {
+        modulePackages.ngbe = ./pkgs/ngbe;
+        overlays.default = self: super: {
+          cursor = super.callPackage ./pkgs/cursor { };
+          wubi98-fonts = super.callPackage ./pkgs/wubi98-fonts { };
+        };
       };
       perSystem =
         { system, pkgs, ... }:
