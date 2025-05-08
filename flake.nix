@@ -29,6 +29,7 @@
         overlays.default = self: super: {
           cursor = super.callPackage ./pkgs/cursor { };
           mccgdi = super.callPackage ./pkgs/mccgdi { };
+          sing-box-beta = super.callPackage ./pkgs/sing-box-beta { };
           wubi98-fonts = super.callPackage ./pkgs/wubi98-fonts { };
         };
       };
@@ -42,7 +43,12 @@
           };
 
           packages = {
-            inherit (pkgs) cursor mccgdi wubi98-fonts;
+            inherit (pkgs)
+              cursor
+              mccgdi
+              sing-box-beta
+              wubi98-fonts
+              ;
           };
 
           treefmt = {
