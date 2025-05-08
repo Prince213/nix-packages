@@ -2,6 +2,7 @@
   lib,
   appimageTools,
   fetchurl,
+  installShellFiles,
   stdenvNoCC,
 }:
 
@@ -21,11 +22,33 @@ let
   };
 in
 
-appimageTools.wrapType2 {
+appimageTools.wrapType2 rec {
   pname = "cursor";
   inherit version;
 
   src = sources.${system};
+
+  nativeBuildInputs = [ installShellFiles ];
+
+  extraInstallCommands =
+    let
+      appimageContents = appimageTools.extract {
+        inherit pname version src;
+      };
+    in
+    ''
+      mkdir -p $out/share
+      cp -r ${appimageContents}/usr/share/appdata $out/share/metainfo
+      cp -r ${appimageContents}/usr/share/applications $out/share/
+      cp -r ${appimageContents}/usr/share/mime $out/share/
+      cp -r ${appimageContents}/usr/share/pixmaps $out/share/
+
+      substituteInPlace $out/share/applications/* --replace-fail /usr/share/cursor/cursor cursor
+
+      installShellCompletion --bash --cmd cursor \
+        --bash ${appimageContents}/usr/share/bash-completion/completions/cursor \
+        --zsh ${appimageContents}/usr/share/zsh/vendor-completions/_cursor
+    '';
 
   meta = {
     description = "AI-first code editor";
