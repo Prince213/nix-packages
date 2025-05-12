@@ -7,6 +7,7 @@
 
 let
   inherit (stdenvNoCC.hostPlatform) system;
+  pname = "wechat";
   version = "4.0.1.11";
   sources = {
     aarch64-linux = fetchurl {
@@ -18,28 +19,26 @@ let
       hash = "sha256-gBWcNQ1o1AZfNsmu1Vi1Kilqv3YbR+wqOod4XYAeVKo=";
     };
   };
+  src = appimageTools.extract {
+    inherit pname version;
+    src = sources.${system};
+    postExtract = ''
+      patchelf --replace-needed libtiff.so.5 libtiff.so $out/opt/wechat/wechat
+    '';
+  };
 in
 
-appimageTools.wrapType2 rec {
-  pname = "wechat";
-  inherit version;
+appimageTools.wrapAppImage {
+  inherit pname version src;
 
-  src = sources.${system};
+  extraInstallCommands = ''
+    mkdir -p $out/share/applications
+    cp ${src}/wechat.desktop $out/share/applications/
+    mkdir -p $out/share/pixmaps
+    cp ${src}/wechat.png $out/share/pixmaps/
 
-  extraInstallCommands =
-    let
-      appimageContents = appimageTools.extract {
-        inherit pname version src;
-      };
-    in
-    ''
-      mkdir -p $out/share/applications
-      cp ${appimageContents}/wechat.desktop $out/share/applications/
-      mkdir -p $out/share/pixmaps
-      cp ${appimageContents}/wechat.png $out/share/pixmaps/
-
-      substituteInPlace $out/share/applications/wechat.desktop --replace-fail AppRun wechat
-    '';
+    substituteInPlace $out/share/applications/wechat.desktop --replace-fail AppRun wechat
+  '';
 
   meta = {
     description = "Messaging and calling app";
