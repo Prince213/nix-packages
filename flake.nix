@@ -25,6 +25,7 @@
         "x86_64-linux"
       ];
       flake = {
+        nixosModules.default = ./modules;
         modulePackages.ngbe = ./pkgs/ngbe;
         overlays.default = self: super: {
           cursor = super.callPackage ./pkgs/cursor { };
