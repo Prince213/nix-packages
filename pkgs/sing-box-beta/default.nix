@@ -27,4 +27,12 @@ sing-box.overrideAttrs (previousAttrs: rec {
   ldflags = [
     "-X=github.com/sagernet/sing-box/constant.Version=${version}"
   ];
+
+  postInstall =
+    previousAttrs.postInstall
+    + ''
+      install -Dm444 release/config/sing-box.sysusers $out/lib/sysusers.d/sing-box.conf
+      install -Dm444 release/config/sing-box.rules $out/share/polkit-1/rules.d/sing-box.rules
+      install -Dm444 release/config/sing-box-split-dns.xml $out/share/dbus-1/system.d/sing-box-split-dns.conf
+    '';
 })
