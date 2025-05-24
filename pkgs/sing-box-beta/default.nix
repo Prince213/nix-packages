@@ -2,12 +2,11 @@
   sing-box,
 }:
 
-sing-box.overrideAttrs (previousAttrs: rec {
+sing-box.overrideAttrs (previousAttrs: {
   pname = previousAttrs.pname + "-beta";
   version = "1.12.0-beta.18";
 
   src = previousAttrs.src.override {
-    rev = "v${version}";
     hash = "sha256-R42+v/1TpnRJrGtftJjee4N+1W5BIK9JEC6UPZerXUw=";
   };
 
@@ -22,10 +21,6 @@ sing-box.overrideAttrs (previousAttrs: rec {
     "with_clash_api"
     "with_gvisor"
     "with_tailscale"
-  ];
-
-  ldflags = [
-    "-X=github.com/sagernet/sing-box/constant.Version=${version}"
   ];
 
   postInstall =
