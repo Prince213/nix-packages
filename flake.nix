@@ -30,6 +30,7 @@
         overlays.default = self: super: {
           cursor = super.callPackage ./pkgs/cursor { };
           mccgdi = super.callPackage ./pkgs/mccgdi { };
+          nodebb = super.callPackage ./pkgs/nodebb { };
           sing-box-beta = super.callPackage ./pkgs/sing-box-beta { };
           vips_8_14_5 = super.callPackage ./pkgs/vips_8_14_5 { };
           wechat = super.callPackage ./pkgs/wechat { };
@@ -49,6 +50,7 @@
             inherit (pkgs)
               cursor
               mccgdi
+              nodebb
               sing-box-beta
               vips_8_14_5
               wechat
