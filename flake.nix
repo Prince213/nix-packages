@@ -31,6 +31,7 @@
           cursor = super.callPackage ./pkgs/cursor { };
           mccgdi = super.callPackage ./pkgs/mccgdi { };
           sing-box-beta = super.callPackage ./pkgs/sing-box-beta { };
+          vips_8_14_5 = super.callPackage ./pkgs/vips_8_14_5 { };
           wechat = super.callPackage ./pkgs/wechat { };
           wubi98-fonts = super.callPackage ./pkgs/wubi98-fonts { };
         };
@@ -49,6 +50,7 @@
               cursor
               mccgdi
               sing-box-beta
+              vips_8_14_5
               wechat
               wubi98-fonts
               ;
