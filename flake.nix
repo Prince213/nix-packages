@@ -31,6 +31,7 @@
         modulePackages.ngbe = ./pkgs/ngbe;
         overlays.default = self: super: {
           cursor = super.callPackage ./pkgs/cursor { };
+          linglong = super.callPackage ./pkgs/linglong { };
           mccgdi = super.callPackage ./pkgs/mccgdi { };
           nodebb = super.callPackage ./pkgs/nodebb { };
           sing-box-beta = super.callPackage ./pkgs/sing-box-beta { };
@@ -51,6 +52,7 @@
           packages = {
             inherit (pkgs)
               cursor
+              linglong
               mccgdi
               nodebb
               sing-box-beta
