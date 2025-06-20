@@ -4,13 +4,13 @@
 
 sing-box.overrideAttrs (previousAttrs: {
   pname = previousAttrs.pname + "-beta";
-  version = "1.12.0-beta.26";
+  version = "1.12.0-beta.27";
 
   src = previousAttrs.src.override {
-    hash = "sha256-jDG2HRjt39Q0/gb72gygQuU2NfJ4u2ACJEI4TOUxfR4=";
+    hash = "sha256-aNC9P2/43BTjCj2jGEgKBRcXu4jXVsd6JwkPGwtmyhQ=";
   };
 
-  vendorHash = "sha256-b7UOWlnd49F1w8ARpOHJKDMnbrIE19wSNO3LtsTo2MQ=";
+  vendorHash = "sha256-A6fewQLvNJIlAyGiDJpE2Bnz6or2Z9XawNqFjcKWIbw=";
 
   tags = [
     "with_quic"
