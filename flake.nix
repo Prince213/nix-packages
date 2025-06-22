@@ -30,7 +30,6 @@
         nixosModules.default = ./modules;
         modulePackages.ngbe = ./pkgs/ngbe;
         overlays.default = self: super: {
-          cursor = super.callPackage ./pkgs/cursor { };
           linglong = super.callPackage ./pkgs/linglong { };
           mccgdi = super.callPackage ./pkgs/mccgdi { };
           nodebb = super.callPackage ./pkgs/nodebb { };
@@ -50,7 +49,6 @@
 
           packages = {
             inherit (pkgs)
-              cursor
               linglong
               mccgdi
               nodebb
