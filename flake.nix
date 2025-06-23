@@ -34,6 +34,7 @@
           mccgdi = super.callPackage ./pkgs/mccgdi { };
           nodebb = super.callPackage ./pkgs/nodebb { };
           sing-box-app = super.callPackage ./pkgs/sing-box-app { };
+          sing-box-app-beta = super.callPackage ./pkgs/sing-box-app-beta { };
           sing-box-beta = super.callPackage ./pkgs/sing-box-beta { };
           vips_8_14_5 = super.callPackage ./pkgs/vips_8_14_5 { };
           wubi98-fonts = super.callPackage ./pkgs/wubi98-fonts { };
@@ -54,6 +55,7 @@
               mccgdi
               nodebb
               sing-box-app
+              sing-box-app-beta
               sing-box-beta
               vips_8_14_5
               wubi98-fonts
