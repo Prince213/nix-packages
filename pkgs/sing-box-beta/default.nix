@@ -23,11 +23,9 @@ sing-box.overrideAttrs (previousAttrs: {
     "with_tailscale"
   ];
 
-  postInstall =
-    previousAttrs.postInstall
-    + ''
-      install -Dm444 release/config/sing-box.sysusers $out/lib/sysusers.d/sing-box.conf
-      install -Dm444 release/config/sing-box.rules $out/share/polkit-1/rules.d/sing-box.rules
-      install -Dm444 release/config/sing-box-split-dns.xml $out/share/dbus-1/system.d/sing-box-split-dns.conf
-    '';
+  postInstall = previousAttrs.postInstall + ''
+    install -Dm444 release/config/sing-box.sysusers $out/lib/sysusers.d/sing-box.conf
+    install -Dm444 release/config/sing-box.rules $out/share/polkit-1/rules.d/sing-box.rules
+    install -Dm444 release/config/sing-box-split-dns.xml $out/share/dbus-1/system.d/sing-box-split-dns.conf
+  '';
 })
