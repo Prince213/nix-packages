@@ -30,6 +30,7 @@
         nixosModules.default = ./modules;
         modulePackages.ngbe = ./pkgs/ngbe;
         overlays.default = self: super: {
+          kodama = super.callPackage ./pkgs/kodama { };
           linglong = super.callPackage ./pkgs/linglong { };
           mccgdi = super.callPackage ./pkgs/mccgdi { };
           nodebb = super.callPackage ./pkgs/nodebb { };
@@ -51,6 +52,7 @@
 
           packages = {
             inherit (pkgs)
+              kodama
               linglong
               mccgdi
               nodebb
