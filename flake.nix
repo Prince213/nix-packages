@@ -50,7 +50,6 @@
               kodama
               linglong
               mccgdi
-              nodebb
               sing-box-app
               sing-box-app-beta
               sing-box-beta
