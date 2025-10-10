@@ -26,6 +26,11 @@ buildNpmPackage' (finalAttrs: {
     ./pnpm-lock.patch
   ];
 
+  postPatch = ''
+    substituteInPlace src/cli.ts \
+      --replace-fail '"node"' '"${lib.getExe nodejs_24}"'
+  '';
+
   npmDeps = null;
   pnpmDeps = pnpm_9.fetchDeps {
     inherit (finalAttrs) pname src patches;
@@ -59,8 +64,7 @@ buildNpmPackage' (finalAttrs: {
 
     mkdir -p $out/bin
     makeWrapper ${lib.getExe nodejs_24} $out/bin/ccr \
-      --add-flags "$out/lib/claude-code-router/dist/cli.js" \
-      --prefix PATH : ${lib.makeBinPath [ nodejs_24 ]}
+      --add-flags "$out/lib/claude-code-router/dist/cli.js"
 
     runHook postInstall
   '';
