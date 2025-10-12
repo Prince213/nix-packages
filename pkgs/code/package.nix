@@ -57,5 +57,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     ];
     maintainers = with lib.maintainers; [ prince213 ];
     mainProgram = "code";
+    priority = 10;
   };
 })
