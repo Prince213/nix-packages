@@ -47,6 +47,7 @@
 
           packages = {
             inherit (pkgs)
+              code
               kodama
               linglong
               mccgdi
