@@ -1,6 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    flake-compat = {
+      url = "https://git.lix.systems/lix-project/flake-compat/archive/main.tar.gz";
+      flake = false;
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
