@@ -51,6 +51,7 @@
 
           packages = {
             inherit (pkgs)
+              claude-code-router
               kodama
               mccgdi
               sing-box-app
