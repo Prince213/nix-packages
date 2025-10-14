@@ -52,7 +52,6 @@
           packages = {
             inherit (pkgs)
               kodama
-              linglong
               mccgdi
               sing-box-app
               sing-box-app-beta
