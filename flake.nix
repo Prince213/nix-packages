@@ -54,6 +54,7 @@
               claude-code-router
               kodama
               mccgdi
+              qqmusic-darwin
               sing-box-app
               sing-box-app-beta
               sing-box-beta
