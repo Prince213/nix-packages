@@ -55,7 +55,6 @@
 
           packages = {
             inherit (pkgs)
-              claude-code-router
               feishu-darwin
               kodama
               mccgdi
