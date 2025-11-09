@@ -49,6 +49,10 @@
             overlays = [ self.overlays.default ];
           };
 
+          checks = {
+            ngbe = pkgs.linuxPackages.callPackage self.modulePackages.ngbe { };
+          };
+
           packages = {
             inherit (pkgs)
               claude-code-router
