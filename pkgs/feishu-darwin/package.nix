@@ -16,18 +16,18 @@ let
     {
       # curl 'https://www.feishu.cn/api/package_info?platform=9'
       aarch64-darwin = {
-        version = "7.54.8";
+        version = "7.55.7";
         src = fetchurl {
-          url = "${base}/ee-appcenter/e9f61856/Feishu-darwin_arm64-7.54.8-signed.dmg";
-          hash = "sha256-rvsbrS2W25+yh40QweK8ZrONS+qzH6SnJ7aXCx+NW/s=";
+          url = "${base}/ee-appcenter/baed713c/Feishu-darwin_arm64-7.55.7-signed.dmg";
+          hash = "sha256-X6WC7D4panuqjiDrLh+AhVQ6tMhQI6kwK73RgTCL0wE=";
         };
       };
       # curl 'https://www.feishu.cn/api/package_info?platform=6'
       x86_64-darwin = {
-        version = "7.54.8";
+        version = "7.55.7";
         src = fetchurl {
-          url = "${base}/ee-appcenter/0ed88891/Feishu-darwin_x64-7.54.8-signed.dmg";
-          hash = "sha256-pC6bgKiVAF+6na/RqL22CMBX+62MgPvfsFpoW2MCJb4=";
+          url = "${base}/ee-appcenter/d2570178/Feishu-darwin_x64-7.55.7-signed.dmg";
+          hash = "sha256-1bT2fTWAGzT7cElOuWykcpA7sagWItUu30Lcq4kZ9xA=";
         };
       };
     };
