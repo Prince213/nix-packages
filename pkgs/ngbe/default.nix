@@ -2,40 +2,46 @@
   lib,
   fetchzip,
   kernel,
-  libarchive,
+  kernelAtLeast,
+  kernelModuleMakeFlags,
   stdenv,
   unzip,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "ngbe";
-  version = "1.2.6.5";
+  version = "1.2.7";
 
   src = fetchzip {
     name = "source";
-    url = "https://www.net-swift.com/uploads/20250123/%E7%BD%91%E8%BF%85%E5%8D%83%E5%85%86%E7%BD%91%E5%8D%A1Linux%20PF%E9%A9%B1%E5%8A%A8%E6%BA%90%E7%A0%81.zip";
-    hash = "sha256-ulC5AeH6RSjD/jI1kfgL/JgKcH6NNGmXUQYM3w3H1xg=";
+    url = "https://www.net-swift.com/uploads/20250716/%E7%BD%91%E8%BF%851G%E7%BD%91%E5%8D%A1Linux%20%E9%A9%B1%E5%8A%A8%E6%BA%90%E7%A0%81.zip";
+    hash = "sha256-+QHoQFt7qIfQ5pPmzPDmk0hKf+yHB0LQunVz/ikTbU0=";
     nativeBuildInputs = [ unzip ];
   };
 
-  nativeBuildInputs = kernel.moduleBuildDependencies ++ [ libarchive ];
+  nativeBuildInputs = kernel.moduleBuildDependencies ++ [ unzip ];
 
   unpackPhase = ''
     runHook preUnpack
-    bsdtar -x --strip-components 1 -f $src/ngbe-${finalAttrs.version}.zip
+    unzip $src/ngbe-${finalAttrs.version}.zip
     runHook postUnpack
   '';
 
-  sourceRoot = "src";
+  sourceRoot = "ngbe-${finalAttrs.version}/src";
 
-  patches = [
-    # 6.10: https://github.com/torvalds/linux/commit/163943ac00cb31ac1a88ce5f78a7e2ead37329ec
-    ./xsk_buff_dma_sync_for_cpu.patch
-    # 6.11: https://github.com/torvalds/linux/commit/2111375b85ad173d58e7b8604246a3de60950ac8
-    ./kernel_ethtool_ts_info.patch
-    # 6.13: https://github.com/torvalds/linux/commit/4b42fbc6bd8f73d9ded535d8c61ccaa837ff3bd4
-    ./ndo_fdb_add_notified.patch
-  ];
+  patches =
+    (lib.optionals (kernelAtLeast "6.15") [
+      # https://github.com/torvalds/linux/commit/8fa7292fee5c5240402371ea89ab285ec856c916
+      ./del_timer_sync.patch
+    ])
+    ++ (lib.optionals (kernelAtLeast "6.16") [
+      # https://github.com/torvalds/linux/commit/41cb08555c4164996d67c78b3bf1c658075b75f1
+      ./from_timer.patch
+    ])
+    ++ (lib.optionals (kernelAtLeast "6.17") [
+      # https://github.com/torvalds/linux/commit/e78f70bad29c5ae1e1076698b690b15794e9b81e
+      ./cyclecounter.patch
+    ]);
 
   postPatch = ''
     substituteInPlace common.mk --replace-fail /sbin/depmod true
@@ -45,7 +51,8 @@ stdenv.mkDerivation (finalAttrs: {
     let
       path = "${kernel.dev}/lib/modules/${kernel.modDirVersion}";
     in
-    [
+    kernelModuleMakeFlags
+    ++ [
       "KSRC=${path}/source"
       "KOBJ=${path}/build"
       "INSTALL_MOD_PATH=$(out)"
