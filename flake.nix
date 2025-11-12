@@ -57,6 +57,7 @@
             inherit (pkgs)
               feishu-darwin
               kodama
+              imunes
               mccgdi
               qqmusic-darwin
               sing-box-app
