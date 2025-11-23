@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   src = fetchurl rec {
     name = "QQMusicMac10.9.5Build01.dmg";
-    url = "https://dldir.y.qq.com/ecosfile/music_clntupate/mac/other/${name}?sign=1762668084-2cTdiF8zrk7ITo9s-0-8d89bf0203c29c938e8ccd4b32cbf87a";
+    url = "https://web.archive.org/web/20251123072458/https://dldir.y.qq.com/ecosfile/music_clntupate/mac/other/${name}?sign=1763882683-soEnopxjxa9lWaaJ-0-990abb13bf4511950e235ac28082b1bf";
     hash = "sha256-gI4kAWOdI1t/0uSXmxQubVAqpF9mwTIAym6CqFAeaoU=";
   };
 
