@@ -31,7 +31,6 @@
         "x86_64-linux"
       ];
       flake = {
-        nixosModules.default = ./modules;
         modulePackages.ngbe = ./pkgs/ngbe;
         overlays.default =
           _: super:
