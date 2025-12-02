@@ -24,6 +24,7 @@ rustPlatform.buildRustPackage {
     description = "Fast Indexer compatible with nginx's autoindex module";
     homepage = "https://github.com/wenxuanjun/rindex";
     license = lib.licenses.gpl3;
+    mainProgram = "rindex";
     maintainers = with lib.maintainers; [ prince213 ];
   };
 }
