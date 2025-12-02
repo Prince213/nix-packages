@@ -1,30 +1,21 @@
 {
   lib,
   fetchFromGitHub,
-  fetchpatch2,
   rustPlatform,
 }:
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "kodama";
-  version = "0.3.3-patch";
+  version = "0.3.7-rc";
 
   src = fetchFromGitHub {
     owner = "kokic";
     repo = "kodama";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-evYgMWza0SNZSoiQtoaeVeh/pCwNq5QbeCXcBZrUdx8=";
+    hash = "sha256-Oncr3bz+NX+FJWke2W2WOQSBDTwTlzK0F8CFeS4hXyE=";
   };
 
-  patches = [
-    # https://github.com/kokic/kodama/pull/84
-    (fetchpatch2 {
-      url = "https://github.com/Prince213/kodama/commit/7e78bb0369311c1a1de4787f7a0dda5e0544c0da.patch?full_index=1";
-      hash = "sha256-wt470eIn9vF+BemJSRuu6B8IaTymNnoVsM4vWs+1lro=";
-    })
-  ];
-
-  cargoHash = "sha256-NhHTnzBVJvlbyf0okv2V8a9prv4cIcmAAJUEsss6Yk8=";
+  cargoHash = "sha256-IkF0tG1nWEKEZh4cWVHrw4D4bHR1Bs4FafVG5sPe1Qc=";
 
   checkFlags = [
     "--skip=process::embed_markdown::tests::test_is_assets_file"
