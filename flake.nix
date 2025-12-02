@@ -59,6 +59,7 @@
               imunes
               mccgdi
               qqmusic-darwin
+              rindex
               sing-box-app
               sing-box-app-beta
               sing-box-beta
