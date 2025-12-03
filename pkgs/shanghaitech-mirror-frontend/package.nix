@@ -2,6 +2,7 @@
   bun,
   fetchFromGitHub,
   lib,
+  nodejs,
   stdenvNoCC,
 }:
 
@@ -54,7 +55,9 @@ stdenvNoCC.mkDerivation (
     nativeBuildInputs = [ bun ];
 
     postConfigure = ''
-      ln -s ${bunDeps}/node_modules .
+      cp -R ${bunDeps}/node_modules .
+      substituteInPlace node_modules/.bin/{tsc,vite} \
+        --replace-fail "/usr/bin/env node" "${nodejs}/bin/node"
     '';
 
     buildPhase = ''
