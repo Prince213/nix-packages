@@ -56,6 +56,7 @@
           packages = {
             inherit (pkgs)
               feishu-darwin
+              gallant
               kodama
               imunes
               mccgdi
