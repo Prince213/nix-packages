@@ -43,13 +43,13 @@ stdenvNoCC.mkDerivation (
   in
   {
     pname = "shanghaitech-mirror-frontend";
-    version = "0-unstable-2025-10-30";
+    version = "0-unstable-2025-12-05";
 
     src = fetchFromGitHub {
       owner = "ShanghaitechGeekPie";
       repo = "shanghaitech-mirror-frontend";
-      rev = "174a0c1fe6b21f63f4a68b569aebf43ec55125fc";
-      hash = "sha256-JOm1ZVgdXR/SAvX+CnswIMTCQYdQ1U5OZEzC1l4jwk8=";
+      rev = "b6dfaf73463f605fa03c3dbd7a1cad8abfe7fd23";
+      hash = "sha256-dO+ZIDLE9ABUEm4rDGfssJdXIE/3UKDYVEybuddpQ+U=";
     };
 
     nativeBuildInputs = [ bun ];
@@ -57,7 +57,7 @@ stdenvNoCC.mkDerivation (
     postConfigure = ''
       cp -R ${bunDeps}/node_modules .
       substituteInPlace node_modules/.bin/{tsc,vite} \
-        --replace-fail "/usr/bin/env node" "${nodejs}/bin/node"
+        --replace-fail "/usr/bin/env node" "${lib.getExe nodejs}"
     '';
 
     buildPhase = ''
@@ -78,10 +78,10 @@ stdenvNoCC.mkDerivation (
 
     passthru = {
       bunDepsHashes = {
-        aarch64-darwin = "sha256-jWXfTORlyowx82EKkU3krNLUpUFdX00vMfiTIfS+cCE=";
-        aarch64-linux = "sha256-qoqV/gEvIrJxiwbiRDNIUI2fq5ds/s8M+1N+Jv4+1bk=";
-        x86_64-darwin = "sha256-mRUoWBIuqdHBlJWNE3+BPpSUh8oC+pUIDs1q2dlf5M8=";
-        x86_64-linux = "sha256-M53Lh0VjPd/C3RqO87ZxBvfhuouB4np6m8M6jEpEYV8=";
+        aarch64-darwin = "sha256-hxlnQ9Lob318LFqPvRDsXnzPzd3fu+euIJ2Pkqpd+qk=";
+        aarch64-linux = "sha256-g0OUyRSfvxGzkW/eR3YtjkGgufopTNMqNp5BiFjPALQ=";
+        x86_64-darwin = "sha256-kreD/+qP8eUPGEtlJ4G8/yOpta1CncaZuFlQsdCWG2E=";
+        x86_64-linux = "sha256-zTYra2klcITr0dvdS5brIM6L0L8WfM8roIMCE96gylo=";
       };
     };
 
