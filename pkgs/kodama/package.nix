@@ -6,16 +6,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "kodama";
-  version = "0.3.7-rc";
+  version = "0.4.0-rc";
 
   src = fetchFromGitHub {
     owner = "kokic";
     repo = "kodama";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-Oncr3bz+NX+FJWke2W2WOQSBDTwTlzK0F8CFeS4hXyE=";
+    hash = "sha256-F5m2DrUFo2tN8hpMJRM0MZe7tk2Sif3u9b67lYmyXxk=";
   };
 
-  cargoHash = "sha256-IkF0tG1nWEKEZh4cWVHrw4D4bHR1Bs4FafVG5sPe1Qc=";
+  cargoHash = "sha256-s7TAP0GHlRY7RAcUhm++TGKwfbaRCIuSySXdNnL/bFM=";
 
   checkFlags = [
     "--skip=process::embed_markdown::tests::test_is_assets_file"
