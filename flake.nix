@@ -55,6 +55,7 @@
 
           packages = {
             inherit (pkgs)
+              rime-wubi98
               feishu-darwin
               gallant
               kodama
