@@ -1,20 +1,47 @@
 {
-  fetchzip,
-  sing-box-app,
+  cpio,
+  fetchurl,
+  gzip,
+  lib,
   sing-box-beta,
-  undmg,
+  stdenvNoCC,
+  xar,
 }:
 
-(sing-box-app.override { sing-box = sing-box-beta; }).overrideAttrs (
-  finalAttrs: previousAttrs: {
-    pname = previousAttrs.pname + "-beta";
-    version = "1.13.0-alpha.27";
+stdenvNoCC.mkDerivation (finalAttrs: {
+  pname = "sing-box-app-beta";
+  version = "1.13.0-beta.2";
 
-    src = fetchzip {
-      url = "https://github.com/SagerNet/sing-box/releases/download/v${finalAttrs.version}/SFM-${finalAttrs.version}-universal.dmg";
-      hash = "sha256-VpccF9E8xJNAHJbp+IHvkYMyUjOZ0jGmpoqyMENcPhU=";
-      stripRoot = false;
-      nativeBuildInputs = [ undmg ];
-    };
-  }
-)
+  src = fetchurl {
+    url = "https://github.com/SagerNet/sing-box/releases/download/v${finalAttrs.version}/SFM-${finalAttrs.version}-Universal.pkg";
+    hash = "sha256-WDFOFOTT30nMukNjHtAiKFpG2LGr9yUJ2f16rTnT6z8=";
+  };
+
+  nativeBuildInputs = [
+    cpio
+    gzip
+    xar
+  ];
+
+  unpackPhase = ''
+    runHook preUnpack
+
+    xar -xf $src
+    zcat component-universal.pkg/Payload | cpio -i
+
+    runHook postUnpack
+  '';
+
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p $out/Applications
+    cp -a SFM.app $out/Applications
+
+    runHook postInstall
+  '';
+
+  meta = sing-box-beta.meta // {
+    platform = lib.platforms.darwin;
+  };
+})
