@@ -1,8 +1,8 @@
 {
   cpio,
   fetchurl,
-  gzip,
   lib,
+  pbzx,
   sing-box-beta,
   stdenvNoCC,
   xar,
@@ -10,16 +10,16 @@
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "sing-box-app-beta";
-  version = "1.13.0-beta.2";
+  version = "1.13.0-beta.4";
 
   src = fetchurl {
     url = "https://github.com/SagerNet/sing-box/releases/download/v${finalAttrs.version}/SFM-${finalAttrs.version}-Universal.pkg";
-    hash = "sha256-WDFOFOTT30nMukNjHtAiKFpG2LGr9yUJ2f16rTnT6z8=";
+    hash = "sha256-wh0bijDn9fNpgDvCZg2C6D46arFt74YcrJYKUCuliDs=";
   };
 
   nativeBuildInputs = [
     cpio
-    gzip
+    pbzx
     xar
   ];
 
@@ -27,7 +27,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook preUnpack
 
     xar -xf $src
-    zcat component-universal.pkg/Payload | cpio -i
+    pbzx -n component-universal.pkg/Payload | cpio -i
 
     runHook postUnpack
   '';
