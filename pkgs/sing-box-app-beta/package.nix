@@ -10,11 +10,11 @@
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "sing-box-app-beta";
-  version = "1.13.0-beta.5";
+  version = "1.13.0-beta.7";
 
   src = fetchurl {
     url = "https://github.com/SagerNet/sing-box/releases/download/v${finalAttrs.version}/SFM-${finalAttrs.version}-Universal.pkg";
-    hash = "sha256-evCrBvK3fm5likyZyOa76V7TmSTaPnZEf4u325oibIg=";
+    hash = "sha256-TdfBlWVfoYVQ+qqyyfDvD7r1ipabYkZoc+Ntq9gTmZI=";
   };
 
   nativeBuildInputs = [
