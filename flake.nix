@@ -55,6 +55,7 @@
 
           packages = {
             inherit (pkgs)
+              dn42_registry_wizard
               rime-wubi98
               feishu-darwin
               gallant
