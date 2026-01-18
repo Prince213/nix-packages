@@ -23,5 +23,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     downloadPage = "https://github.com/Kioubit/dn42_registry_wizard/releases";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ prince213 ];
+    mainProgram = "registry_wizard";
   };
 })
