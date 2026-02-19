@@ -24,6 +24,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://github.com/Aidoku/aidoku-rs";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ prince213 ];
-    mainProgram = "aidoku-cli";
+    mainProgram = "aidoku";
   };
 })
