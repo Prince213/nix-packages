@@ -55,6 +55,7 @@
 
           packages = {
             inherit (pkgs)
+              aidoku-cli
               rime-wubi98
               feishu-darwin
               gallant
