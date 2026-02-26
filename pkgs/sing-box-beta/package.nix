@@ -31,9 +31,11 @@ sing-box.overrideAttrs (
         "with_naive_outbound"
       ];
 
-    postInstall = previousAttrs.postInstall + ''
-      ln -s "${finalAttrs.passthru.libcronet}" "$out/lib/libcronet.so"
-    '';
+    postInstall =
+      previousAttrs.postInstall
+      + lib.optionalString withNaiveOutbound ''
+        ln -s "${finalAttrs.passthru.libcronet}" "$out/lib/libcronet.so"
+      '';
 
     passthru = previousAttrs.passthru // {
       libcronet =
