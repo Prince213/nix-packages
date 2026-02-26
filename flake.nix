@@ -56,13 +56,13 @@
           packages = {
             inherit (pkgs)
               aidoku-cli
-              rime-wubi98
               feishu-darwin
               gallant
-              kodama
               imunes
+              kodama
               mccgdi
               qqmusic-darwin
+              rime-wubi98
               rindex
               shanghaitech-mirror-frontend
               sing-box-app
