@@ -56,6 +56,7 @@
           packages = {
             inherit (pkgs)
               aidoku-cli
+              cronet-go
               feishu-darwin
               gallant
               imunes
