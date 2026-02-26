@@ -1,6 +1,8 @@
 {
+  apple-sdk_15,
   buildGoModule,
   buildPackages,
+  darwin,
   fetchFromGitHub,
   gn,
   lib,
@@ -8,6 +10,7 @@
   python3,
   stdenvNoCC,
   symlinkJoin,
+  xcbuild,
 }:
 let
   llvmCcAndBintools = symlinkJoin {
@@ -51,7 +54,16 @@ stdenvNoCC.mkDerivation (
       buildPackages.rustc.llvmPackages.bintools
       ninja
       python3
-    ];
+    ]
+    ++ lib.optional stdenvNoCC.hostPlatform.isDarwin xcbuild;
+
+    buildInputs = lib.optional stdenvNoCC.hostPlatform.isDarwin apple-sdk_15;
+
+    patches = lib.optional stdenvNoCC.hostPlatform.isDarwin ./libresolv.patch;
+    postPatch = lib.optionalString stdenvNoCC.hostPlatform.isDarwin ''
+      substituteInPlace naiveproxy/src/build/config/mac/BUILD.gn \
+        --replace-fail @libresolv@ ${lib.getInclude darwin.libresolv}
+    '';
 
     buildPhase = ''
       runHook preBuild
@@ -77,7 +89,7 @@ stdenvNoCC.mkDerivation (
       homepage = "https://github.com/SagerNet/cronet-go";
       license = lib.licenses.gpl3Plus;
       maintainers = with lib.maintainers; [ prince213 ];
-      platforms = with lib.platforms; darwin ++ linux;
+      platforms = lib.platforms.darwin ++ lib.platforms.linux;
     };
   }
 )
