@@ -61,6 +61,7 @@
               imunes
               kodama
               mccgdi
+              naiveproxy
               qqmusic-darwin
               rime-wubi98
               rindex
