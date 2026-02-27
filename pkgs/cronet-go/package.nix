@@ -40,14 +40,14 @@ stdenvNoCC.mkDerivation (
   in
   {
     pname = "cronet-go";
-    version = "143.0.7499.109-1-unstable-2026-02-26";
+    version = "143.0.7499.109-1-unstable-2026-02-27";
 
     src = fetchFromGitHub {
       owner = "SagerNet";
       repo = "cronet-go";
-      rev = "f06e53acecf6d2a7fd1199b6e343014403dd7b4c";
+      rev = "d9ea2601b3a8bd0b2c54ec5c515cb25dfc468dab";
       fetchSubmodules = true;
-      hash = "sha256-1MUh3ikQEAMjEqPiPE23KAKoMyMq5Eq28AswY8MYXVQ=";
+      hash = "sha256-q82wlTUENfrv2esS54TKnZB20wtdIVuJ7dzuNnkvXJE=";
     };
 
     nativeBuildInputs = [
