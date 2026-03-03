@@ -12,13 +12,13 @@
 assert withNaiveOutbound -> !withStaticCronet -> stdenvNoCC.hostPlatform.isLinux;
 sing-box.overrideAttrs (previousAttrs: {
   pname = previousAttrs.pname + "-beta";
-  version = "1.13.0-rc.7";
+  version = "1.13.1-beta.1";
 
   src = previousAttrs.src.override {
-    hash = "sha256-LliUNgu1P6xQlMRB1xsEqLmCytesHjcamb6oRTCFlpw=";
+    hash = "sha256-cpRaFnb7hSMnLWQh84zXpMUBVc+k2KH7wDPE9C1tv40=";
   };
 
-  vendorHash = "sha256-vVLaG0PV1OXA+YL67BnrHJiSkNVzJbZ8TeMKbO2rMu0=";
+  vendorHash = "sha256-9+OkitjuHiXwEPtGUVQ12FpNPnLm89jUKj1M8Z4gL1s=";
 
   preBuild =
     (previousAttrs.preBuild or "")
