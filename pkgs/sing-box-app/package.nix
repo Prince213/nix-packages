@@ -1,21 +1,36 @@
 {
-  fetchzip,
+  cpio,
+  fetchurl,
   lib,
+  pbzx,
   sing-box,
   stdenvNoCC,
-  undmg,
+  xar,
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "sing-box-app";
-  version = "1.12.12";
+  version = "1.13.0";
 
-  src = fetchzip {
-    url = "https://github.com/SagerNet/sing-box/releases/download/v${finalAttrs.version}/SFM-${finalAttrs.version}-universal.dmg";
-    hash = "sha256-WGs9bA7Wta3uxXJ9LY9vwmPN1Tb37DOZ1cK1sSji70U=";
-    stripRoot = false;
-    nativeBuildInputs = [ undmg ];
+  src = fetchurl {
+    url = "https://github.com/SagerNet/sing-box/releases/download/v${finalAttrs.version}/SFM-${finalAttrs.version}-Universal.pkg";
+    hash = "sha256-p9kM+OM+YoyVThQoRsRLXgF4eN1btd9ytaFTtXdFVU4=";
   };
+
+  nativeBuildInputs = [
+    cpio
+    pbzx
+    xar
+  ];
+
+  unpackPhase = ''
+    runHook preUnpack
+
+    xar -xf $src
+    pbzx -n component-universal.pkg/Payload | cpio -i
+
+    runHook postUnpack
+  '';
 
   installPhase = ''
     runHook preInstall
