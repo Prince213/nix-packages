@@ -64,6 +64,7 @@
               rindex
               shanghaitech-mirror-frontend
               sing-box-app
+              sing-box-app-beta
               sing-box-beta
               vips_8_14_5
               wubi98-fonts
