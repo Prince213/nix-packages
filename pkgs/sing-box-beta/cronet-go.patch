@@ -5,7 +5,7 @@
  
  	searchPaths := []string{
 -		filepath.Dir(os.Args[0]),
-+		filepath.Dir(os.Args[0]) + "/../lib",
++		"@out@/lib",
  	}
  
  	if ldPath := os.Getenv("LD_LIBRARY_PATH"); ldPath != "" {

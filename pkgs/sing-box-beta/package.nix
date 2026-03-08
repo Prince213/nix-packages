@@ -7,9 +7,11 @@
   stdenvNoCC,
 
   withStaticCronet ? true,
-  withNaiveOutbound ? false,
+  withNaiveOutbound ? true,
 }:
-assert withNaiveOutbound -> !withStaticCronet -> stdenvNoCC.hostPlatform.isLinux;
+assert lib.assertMsg (
+  withNaiveOutbound -> !withStaticCronet -> stdenvNoCC.hostPlatform.isLinux
+) "Dynamic linking to cronet-go is only available on Linux.";
 sing-box.overrideAttrs (previousAttrs: {
   pname = previousAttrs.pname + "-beta";
   version = "1.14.0-alpha.1";
@@ -26,7 +28,11 @@ sing-box.overrideAttrs (previousAttrs: {
       cd vendor/github.com/sagernet/cronet-go
       chmod -R u+w .
       cp -r ${cronet-go}/ .
-      ${lib.optionalString (!withStaticCronet) "patch -p1 < ${./cronet-go.patch}"}
+      ${lib.optionalString (!withStaticCronet) ''
+        patch -p1 < ${./cronet-go.patch}
+        substituteInPlace internal/cronet/loader_unix.go \
+          --subst-var out
+      ''}
       cd ../../../..
     '';
 
@@ -40,9 +46,8 @@ sing-box.overrideAttrs (previousAttrs: {
 
   tags =
     previousAttrs.tags
-    ++ lib.optionals withNaiveOutbound (
-      [ "with_naive_outbound" ] ++ lib.optional (!withStaticCronet) "with_purego"
-    );
+    ++ lib.optional withNaiveOutbound "with_naive_outbound"
+    ++ lib.optional (withNaiveOutbound && !withStaticCronet) "with_purego";
 
   postInstall =
     previousAttrs.postInstall
