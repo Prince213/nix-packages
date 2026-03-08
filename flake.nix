@@ -30,9 +30,9 @@
         modulePackages.ngbe = ./pkgs/ngbe;
         nixosModules.default = ./modules/nixos;
         overlays.default =
-          _: super:
-          super.lib.packagesFromDirectoryRecursive {
-            inherit (super) callPackage;
+          final: prev:
+          prev.lib.packagesFromDirectoryRecursive {
+            inherit (final) callPackage;
             directory = ./pkgs;
           };
       };
