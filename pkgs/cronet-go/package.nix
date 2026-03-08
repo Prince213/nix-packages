@@ -40,14 +40,14 @@ stdenvNoCC.mkDerivation (
   in
   {
     pname = "cronet-go";
-    version = "143.0.7499.109-1-unstable-2026-02-27";
+    version = "143.0.7499.109-1-unstable-2026-03-06";
 
     src = fetchFromGitHub {
       owner = "SagerNet";
       repo = "cronet-go";
-      rev = "d9ea2601b3a8bd0b2c54ec5c515cb25dfc468dab";
+      rev = "d181863d6a4aa2e7bb7eaf67c1d512c5e4827fde";
       fetchSubmodules = true;
-      hash = "sha256-q82wlTUENfrv2esS54TKnZB20wtdIVuJ7dzuNnkvXJE=";
+      hash = "sha256-PG5+v7qynUT77cjsVWcGxmChb123ztOMT+IV42VOcPs=";
     };
 
     nativeBuildInputs = [
@@ -86,6 +86,7 @@ stdenvNoCC.mkDerivation (
 
     meta = {
       description = "Go bindings for naiveproxy";
+      branch = "dev";
       homepage = "https://github.com/SagerNet/cronet-go";
       license = lib.licenses.gpl3Plus;
       maintainers = with lib.maintainers; [ prince213 ];
