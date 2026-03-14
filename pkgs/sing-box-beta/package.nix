@@ -14,26 +14,28 @@ assert lib.assertMsg (
 ) "Dynamic linking to cronet-go is only available on Linux.";
 sing-box.overrideAttrs (previousAttrs: {
   pname = previousAttrs.pname + "-beta";
-  version = "1.14.0-alpha.1";
+  version = "1.14.0-alpha.2";
 
   src = previousAttrs.src.override {
-    hash = "sha256-5lhdBkIk/WDWAxnxuNV7AL36uxiyxJja/squIftKTOU=";
+    hash = "sha256-nFU/Fdr2YfOfVIa+aiY8f8Gv608M9ekgX6dVUHUYTPk=";
   };
 
-  vendorHash = "sha256-WIz7/BxjKQpw/yjs8gpXLGOITZiOlPteKeOJmmyzO9c=";
+  vendorHash = "sha256-jFPomA53p7OxA53Ko0b5BGA+UsTE2h/yZFBgf6W22TI=";
 
   preBuild =
     (previousAttrs.preBuild or "")
     + lib.optionalString withNaiveOutbound ''
-      cd vendor/github.com/sagernet/cronet-go
-      chmod -R u+w .
-      cp -r ${cronet-go}/ .
-      ${lib.optionalString (!withStaticCronet) ''
-        patch -p1 < ${./cronet-go.patch}
-        substituteInPlace internal/cronet/loader_unix.go \
-          --subst-var out
-      ''}
-      cd ../../../..
+      if test -d vendor; then
+        cd vendor/github.com/sagernet/cronet-go
+        chmod -R u+w .
+        cp -r ${cronet-go}/ .
+        ${lib.optionalString (!withStaticCronet) ''
+          patch -p1 < ${./cronet-go.patch}
+          substituteInPlace internal/cronet/loader_unix.go \
+            --subst-var out
+        ''}
+        cd ../../../..
+      fi
     '';
 
   nativeBuildInputs =
