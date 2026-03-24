@@ -41,7 +41,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   postPatch = ''
     substituteInPlace usr/share/applications/termius-app.desktop \
-      --replace-fail 'Exec=/opt' 'Exec=$out/opt'
+      --replace-fail "Exec=/opt" "Exec=$out/opt"
   '';
 
   installPhase = ''
