@@ -1,6 +1,7 @@
 {
   fetchFromGitHub,
   lib,
+  nix-update-script,
   rustPlatform,
 }:
 
@@ -18,6 +19,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   cargoHash = "sha256-vawbjRjIOOUbkvSUCbO1TuJfGIyXJjHlkFPdF+59ZE8=";
 
   buildAndTestSubdir = "crates/cli";
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [ "--version=branch" ];
+  };
 
   meta = {
     description = "Command-line utility for Aidoku source development and testing";
