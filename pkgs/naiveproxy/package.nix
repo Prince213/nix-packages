@@ -4,6 +4,7 @@
   gn,
   lib,
   ninja,
+  nix-update-script,
   python3,
   stdenvNoCC,
   symlinkJoin,
@@ -88,6 +89,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Use Chromium's network stack to camouflage traffic";
