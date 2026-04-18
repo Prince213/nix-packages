@@ -39,6 +39,7 @@
       perSystem =
         {
           system,
+          config,
           lib,
           pkgs,
           ...
@@ -53,9 +54,11 @@
             overlays = [ self.overlays.default ];
           };
 
-          checks = filterAvailable {
-            ngbe = pkgs.linuxPackages.callPackage self.modulePackages.ngbe { };
-          };
+          checks =
+            filterAvailable {
+              ngbe = pkgs.linuxPackages.callPackage self.modulePackages.ngbe { };
+            }
+            // config.packages;
 
           packages = filterAvailable {
             inherit (pkgs)
