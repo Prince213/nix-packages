@@ -37,7 +37,15 @@
           };
       };
       perSystem =
-        { system, pkgs, ... }:
+        {
+          system,
+          lib,
+          pkgs,
+          ...
+        }:
+        let
+          filterAvailable = lib.filterAttrs (_: lib.meta.availableOn { inherit system; });
+        in
         {
           _module.args.pkgs = import nixpkgs {
             inherit system;
@@ -45,11 +53,11 @@
             overlays = [ self.overlays.default ];
           };
 
-          checks = {
+          checks = filterAvailable {
             ngbe = pkgs.linuxPackages.callPackage self.modulePackages.ngbe { };
           };
 
-          packages = {
+          packages = filterAvailable {
             inherit (pkgs)
               aidoku-cli
               anytype-darwin
