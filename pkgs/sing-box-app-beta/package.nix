@@ -1,5 +1,4 @@
 {
-  fetchurl,
   lib,
   sing-box-app,
   sing-box-beta,
