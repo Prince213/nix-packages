@@ -61,6 +61,7 @@
             inherit (pkgs)
               aidoku-cli
               anytype-darwin
+              cloudnet
               cronet-go
               feishu-darwin
               gallant
