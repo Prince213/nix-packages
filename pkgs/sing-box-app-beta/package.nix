@@ -13,6 +13,6 @@ sing-box-app.overrideAttrs (previousAttrs: {
   };
 
   meta = sing-box-beta.meta // {
-    platform = lib.platforms.darwin;
+    platforms = lib.platforms.darwin;
   };
 })
