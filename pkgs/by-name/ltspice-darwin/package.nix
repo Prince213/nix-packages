@@ -6,35 +6,35 @@
 
   # nativeBuildInputs
   cpio,
-  gzip,
   makeBinaryWrapper,
+  pbzx,
   xar,
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   inherit (ltspice) pname;
-  version = "17.2.4";
+  version = "26.0.2";
 
   __structuredAttrs = true;
   strictDeps = true;
 
   src = fetchurl {
-    url = "https://web.archive.org/web/20260404114809if_/https://ltspice.analog.com/software/LTspice.pkg";
-    hash = "sha256-GHmV6Sll2xWV/9sbcS2QwVe57PAdErJMS1JZ+S+UJY0=";
+    url = "https://web.archive.org/web/20260724145842if_/https://ltspice.analog.com/software/LTspice_26.pkg";
+    hash = "sha256-879Six3xsy0v7PjiC5K8F/5vFyP0K1J1Q8bDCclzn/I=";
   };
 
   nativeBuildInputs = [
     cpio
-    gzip
     makeBinaryWrapper
+    pbzx
     xar
   ];
 
   unpackPhase = ''
     runHook preUnpack
 
-    xar -xf $src LTspice.pkg/Payload
-    gzip -dc LTspice.pkg/Payload | cpio -i
+    xar -xf $src Package.pkg/Payload
+    pbzx -n Package.pkg/Payload | cpio -i
 
     runHook postUnpack
   '';
