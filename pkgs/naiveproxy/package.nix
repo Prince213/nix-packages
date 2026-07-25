@@ -1,7 +1,6 @@
 {
   lib,
   buildPackages,
-  darwin,
   fetchFromGitHub,
   replaceVars,
   stdenvNoCC,
@@ -15,6 +14,7 @@
 
   # buildInputs
   apple-sdk_15,
+  darwin,
 
   # passthru
   fetchurl,
@@ -176,7 +176,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     description = "Use Chromium's network stack to camouflage traffic";
     homepage = "https://github.com/klzgrad/naiveproxy";
     downloadPage = "https://github.com/klzgrad/naiveproxy/releases";
-    changelog = "https://github.com/klzgrad/naiveproxy/releases/tag/${finalAttrs.src.tag}";
+    changelog = "https://github.com/klzgrad/naiveproxy/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [ prince213 ];
     mainProgram = "naive";
