@@ -1,11 +1,12 @@
 {
+  lib,
   feishu,
   fetchurl,
-  lib,
   stdenvNoCC,
+
+  # nativeBuildInputs
   undmg,
 }:
-
 let
   inherit (stdenvNoCC.hostPlatform) system;
 

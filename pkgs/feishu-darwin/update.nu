@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i nu -p nushell
+#!nix-shell -i nu -p nix -p nushell
 
 let platforms = {
   aarch64-darwin: 9
