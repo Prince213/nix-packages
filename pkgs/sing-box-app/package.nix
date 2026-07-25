@@ -1,16 +1,19 @@
 {
-  cpio,
-  fetchurl,
   lib,
-  pbzx,
+  fetchurl,
   sing-box,
   stdenvNoCC,
+
+  # nativeBuildInputs
+  cpio,
+  pbzx,
   xar,
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "sing-box-app";
   version = "1.13.14";
+
   __structuredAttrs = true;
   strictDeps = true;
 
@@ -28,7 +31,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   unpackPhase = ''
     runHook preUnpack
 
-    xar -xf $src
+    xar -xf $src component-universal.pkg/Payload
     pbzx -n component-universal.pkg/Payload | cpio -i
 
     runHook postUnpack
@@ -38,7 +41,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook preInstall
 
     mkdir -p $out/Applications
-    cp -a SFM.app $out/Applications
+    cp -r SFM.app $out/Applications
 
     runHook postInstall
   '';
