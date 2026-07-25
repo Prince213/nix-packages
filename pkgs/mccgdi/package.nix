@@ -5,7 +5,7 @@
 
   # nativeBuildInputs
   autoPatchelfHook,
-  makeWrapper,
+  makeBinaryWrapper,
 
   # buildInputs
   cups,
@@ -27,7 +27,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     autoPatchelfHook
-    makeWrapper
+    makeBinaryWrapper
   ];
 
   buildInputs = [ libgcc.lib ];
