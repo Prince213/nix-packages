@@ -1,17 +1,21 @@
 {
-  apple-sdk_15,
-  buildGoModule,
-  buildPackages,
-  darwin,
-  fetchFromGitHub,
-  gn,
   lib,
-  ninja,
-  python3,
+  buildGoModule,
+  fetchFromGitHub,
   replaceVars,
   stdenvNoCC,
   symlinkJoin,
+
+  # nativeBuildInputs
+  buildPackages,
+  gn,
+  ninja,
+  python3,
   xcbuild,
+
+  # buildInputs
+  apple-sdk_15,
+  darwin,
 }:
 let
   llvmCcAndBintools = symlinkJoin {
