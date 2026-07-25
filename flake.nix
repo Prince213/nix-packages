@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -12,74 +12,25 @@
   outputs =
     inputs@{
       self,
-      nixpkgs,
       flake-parts,
       systems,
       treefmt-nix,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        treefmt-nix.flakeModule
-      ];
+      imports = [ treefmt-nix.flakeModule ];
       systems = import systems;
       flake = {
-        modulePackages.ngbe = ./pkgs/ngbe;
-        overlays.default =
-          final: prev:
-          prev.lib.packagesFromDirectoryRecursive {
-            inherit (final) callPackage;
-            directory = ./pkgs;
-          };
+        overlays.default = import ./pkgs/top-level/all-packages.nix;
       };
       perSystem =
+        { pkgs, ... }:
         {
-          system,
-          config,
-          lib,
-          pkgs,
-          ...
-        }:
-        let
-          filterAvailable = lib.filterAttrs (_: lib.meta.availableOn { inherit system; });
-        in
-        {
-          _module.args.pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-            overlays = [ self.overlays.default ];
-          };
-
-          checks =
-            filterAvailable {
-              ngbe = pkgs.linuxPackages.callPackage self.modulePackages.ngbe { };
-            }
-            // config.packages;
-
-          packages = filterAvailable {
-            inherit (pkgs)
-              aidoku-cli
-              anytype-darwin
-              cloudnet
-              cronet-go
-              feishu-darwin
-              gallant
-              imunes
-              kodama
-              ltspice-darwin
-              mccgdi
-              naiveproxy
-              qqmusic-darwin
-              rime-wubi98
-              rustledger
-              sing-box-app
-              sing-box-app-beta
-              sing-box-beta
-              sing-box-dashboard
-              termius-app
-              wubi98-fonts
-              ;
-          };
+          packages =
+            let
+              overlay = self.overlays.default;
+            in
+            overlay (pkgs.extend overlay) pkgs;
 
           treefmt = {
             projectRootFile = "flake.nix";

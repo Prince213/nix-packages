@@ -2,16 +2,9 @@
   pkgs ? import <nixpkgs> { },
 }:
 let
-  overlay =
-    final: prev:
-    prev.lib.packagesFromDirectoryRecursive {
-      inherit (final) callPackage;
-      directory = ./pkgs;
-    };
-
-  pkgs' = pkgs.extend overlay;
+  overlay = import ./pkgs/top-level/all-packages.nix;
 in
 {
   overlays.default = overlay;
 }
-// overlay pkgs' pkgs'
+// overlay (pkgs.extend overlay) pkgs
