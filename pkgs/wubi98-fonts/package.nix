@@ -1,8 +1,10 @@
 {
   lib,
   fetchFromGitHub,
-  p7zip,
   stdenvNoCC,
+
+  # nativeBuildInputs
+  p7zip,
 }:
 
 stdenvNoCC.mkDerivation {
@@ -19,16 +21,23 @@ stdenvNoCC.mkDerivation {
     hash = "sha256-leJlhmt/oFDrdMTGscbb7CMpWORyCZ221xSpxm4ydHU=";
   };
 
-  nativeBuildInputs = [
-    p7zip
-  ];
+  nativeBuildInputs = [ p7zip ];
 
   buildPhase = ''
+    runHook preBuild
+
     7z x fcitx5-rime.7z.001
+
+    runHook postBuild
   '';
 
   installPhase = ''
-    install -Dm 444 -t $out/share/fonts/opentype/wubi98-fonts fcitx5-rime/fonts/98WB-[0123UV].otf
+    runHook preInstall
+
+    install -Dm 444 -t $out/share/fonts/opentype/wubi98-fonts \
+      fcitx5-rime/fonts/98WB-[0123UV].otf
+
+    runHook postInstall
   '';
 
   meta = {
