@@ -1,13 +1,16 @@
 {
-  cpio,
-  fetchurl,
-  gzip,
   lib,
   ltspice,
-  makeWrapper,
+  fetchurl,
   stdenvNoCC,
+
+  # nativeBuildInputs
+  cpio,
+  gzip,
+  makeWrapper,
   xar,
 }:
+
 stdenvNoCC.mkDerivation (finalAttrs: {
   inherit (ltspice) pname;
   version = "17.2.4";
@@ -30,7 +33,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   unpackPhase = ''
     runHook preUnpack
 
-    xar -xf $src LTspice.pkg
+    xar -xf $src LTspice.pkg/Payload
     gzip -dc LTspice.pkg/Payload | cpio -i
 
     runHook postUnpack
