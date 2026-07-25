@@ -1,10 +1,14 @@
 {
-  buildPackages,
-  cronet-go,
-  go,
   lib,
+  go,
   sing-box,
   stdenvNoCC,
+
+  # nativeBuildInputs
+  buildPackages,
+
+  # buildInputs
+  cronet-go,
 
   withStaticCronet ? true,
   withNaiveOutbound ? true,
