@@ -1,8 +1,10 @@
 {
+  lib,
   anytype,
   fetchurl,
-  lib,
   stdenvNoCC,
+
+  # nativeBuildInputs
   unzip,
 }:
 let
@@ -25,7 +27,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook preInstall
 
     mkdir -p $out/Applications
-    cp -R Anytype.app $out/Applications
+    cp -r Anytype.app $out/Applications
 
     runHook postInstall
   '';

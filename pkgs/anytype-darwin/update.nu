@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i nu -p nushell
+#!nix-shell -i nu -p nix -p nushell
 
 def get-github-api [url: string] {
   http get -H {
