@@ -6,6 +6,7 @@
 
   # nativeBuildInputs
   cpio,
+  makeBinaryWrapper,
   pbzx,
   xar,
 }:
@@ -24,6 +25,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     cpio
+    makeBinaryWrapper
     pbzx
     xar
   ];
@@ -43,10 +45,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     mkdir -p $out/Applications
     cp -r SFM.app $out/Applications
 
+    makeWrapper $out/Applications/SFM.app/Contents/MacOS/SFM $out/bin/sing-box-app
+
     runHook postInstall
   '';
 
   meta = sing-box.meta // {
+    mainProgram = "sing-box-app";
     platforms = lib.platforms.darwin;
   };
 })
