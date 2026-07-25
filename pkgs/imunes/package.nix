@@ -1,12 +1,17 @@
 {
-  fetchFromGitHub,
   lib,
-  makeWrapper,
+  fetchFromGitHub,
   stdenv,
+
+  # nativeBuildInputs
+  makeWrapper,
+
+  # buildInputs
   tcl-8_6,
   tclPackages,
   tk-8_6,
 }:
+
 stdenv.mkDerivation (finalAttrs: {
   pname = "imunes";
   version = "3.0.0b";
@@ -38,7 +43,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Integrated Multiprotocol Network Emulator/Simulator";
     homepage = "https://imunes.net/";
     downloadPage = "https://github.com/imunes/imunes/tags";
-    changelog = "https://github.com/imunes/imunes/releases/tag/${finalAttrs.src.tag}";
+    changelog = "https://github.com/imunes/imunes/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.bsd2;
     maintainers = with lib.maintainers; [ prince213 ];
     mainProgram = "imunes";
