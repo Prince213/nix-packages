@@ -72,7 +72,6 @@
               qqmusic-darwin
               rime-wubi98
               rustledger
-              shanghaitech-mirror-frontend
               shanghaitech-techpie-backend
               sing-box-app
               sing-box-app-beta
