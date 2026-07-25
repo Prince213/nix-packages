@@ -2,6 +2,8 @@
   lib,
   fetchFromGitHub,
   rustPlatform,
+
+  # nativeInstallCheckInputs
   versionCheckHook,
 }:
 
@@ -35,7 +37,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Rust implementation of Beancount";
     homepage = "https://rustledger.github.io/";
     downloadPage = "https://github.com/rustledger/rustledger/releases";
-    changelog = "https://github.com/rustledger/rustledger/releases/tag/${finalAttrs.src.tag}";
+    changelog = "https://github.com/rustledger/rustledger/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ prince213 ];
     mainProgram = "rledger";
