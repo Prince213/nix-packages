@@ -71,7 +71,6 @@
               naiveproxy
               qqmusic-darwin
               rime-wubi98
-              rindex
               rustledger
               shanghaitech-mirror-frontend
               shanghaitech-techpie-backend
