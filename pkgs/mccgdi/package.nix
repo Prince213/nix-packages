@@ -1,12 +1,16 @@
 {
   lib,
-  autoPatchelfHook,
-  cups,
   fetchzip,
+  stdenv,
+
+  # nativeBuildInputs
+  autoPatchelfHook,
+  makeWrapper,
+
+  # buildInputs
+  cups,
   ghostscript,
   libgcc,
-  makeWrapper,
-  stdenv,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -26,20 +30,20 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper
   ];
 
-  buildInputs = [
-    libgcc.lib
-  ];
+  buildInputs = [ libgcc.lib ];
 
   buildPhase = ''
     substitute ${./hook.c} hook.c \
-      --replace-fail "@cups@" ${cups.lib} \
-      --replace-fail "@ghostscript@" ${ghostscript} \
-      --replace-fail "@datadir@" $out/share \
-      --replace-fail "@libdir@" $out/lib
-    cc -shared -fPIC hook.c -o libhook.so
+      --replace-fail @cups@ ${cups.lib} \
+      --replace-fail @ghostscript@ ${ghostscript} \
+      --replace-fail @datadir@ $out/share \
+      --replace-fail @libdir@ $out/lib
+    $CC -shared -fPIC hook.c -o libhook.so
   '';
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/lib
     cp libhook.so $out/lib/
 
@@ -57,6 +61,8 @@ stdenv.mkDerivation (finalAttrs: {
       ln -s $file.so.1.0.0 $out/lib/$file.so.1
       ln -s $file.so.1 $out/lib/$file.so
     done
+
+    runHook postInstall
   '';
 
   postFixup = ''
