@@ -1,9 +1,11 @@
 {
   lib,
   fetchzip,
-  kernel,
   kernelModuleMakeFlags,
   stdenv,
+
+  # nativeBuildInputs
+  kernel,
   unzip,
 }:
 
