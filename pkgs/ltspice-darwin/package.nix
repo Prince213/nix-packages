@@ -7,7 +7,7 @@
   # nativeBuildInputs
   cpio,
   gzip,
-  makeWrapper,
+  makeBinaryWrapper,
   xar,
 }:
 
@@ -26,7 +26,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     cpio
     gzip
-    makeWrapper
+    makeBinaryWrapper
     xar
   ];
 
