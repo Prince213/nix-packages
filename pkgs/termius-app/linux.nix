@@ -10,7 +10,7 @@
   # nativeBuildInputs
   autoPatchelfHook,
   dpkg,
-  makeWrapper,
+  makeBinaryWrapper,
 
   # buildInputs
   alsa-lib,
@@ -36,7 +36,7 @@ stdenvNoCC.mkDerivation {
   nativeBuildInputs = [
     autoPatchelfHook
     dpkg
-    makeWrapper
+    makeBinaryWrapper
   ];
 
   buildInputs = [
