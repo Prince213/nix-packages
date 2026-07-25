@@ -1,11 +1,14 @@
 # https://github.com/NixOS/nixpkgs/pull/454489
 {
-  fetchurl,
   lib,
+  fetchurl,
   qqmusic,
   stdenvNoCC,
+
+  # nativeBuildInputs
   undmg,
 }:
+
 stdenvNoCC.mkDerivation (finalAttrs: {
   inherit (qqmusic) pname;
   version = "11.5.0.1";
@@ -34,9 +37,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   meta = qqmusic.meta // {
     maintainers = with lib.maintainers; [ prince213 ];
-    platforms = [
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
+    platforms = lib.platforms.darwin;
   };
 })
