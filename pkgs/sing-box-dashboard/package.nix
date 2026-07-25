@@ -3,6 +3,8 @@
   buildNpmPackage,
   fetchFromGitHub,
   fetchPnpmDeps,
+
+  # nativeBuildInputs
   pnpm_11,
   pnpmConfigHook,
 }:
@@ -12,6 +14,7 @@ in
 buildNpmPackage (finalAttrs: {
   pname = "sing-box-dashboard";
   version = "0-unstable-2026-07-19";
+
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
