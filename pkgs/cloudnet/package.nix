@@ -1,8 +1,12 @@
 {
   lib,
   fetchzip,
-  makeBinaryWrapper,
   stdenvNoCC,
+
+  # nativeBuildInputs
+  makeBinaryWrapper,
+
+  # buildInputs
   zulu25,
 }:
 
