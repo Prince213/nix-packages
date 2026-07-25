@@ -40,7 +40,7 @@ stdenvNoCC.mkDerivation {
   meta = {
     description = "Wubi98 schemas for RIME";
     homepage = "https://github.com/yanhuacuo/98wubi";
-    license = lib.licenses.lgpl3;
+    license = lib.licenses.lgpl3Only;
     maintainers = with lib.maintainers; [ prince213 ];
   };
 }
