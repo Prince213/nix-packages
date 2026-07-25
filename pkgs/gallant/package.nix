@@ -14,6 +14,7 @@
 stdenv.mkDerivation {
   pname = "gallant";
   version = "0-unstable-2025-12-06";
+
   __structuredAttrs = true;
   strictDeps = true;
 
@@ -33,9 +34,7 @@ stdenv.mkDerivation {
     touch gallant.hex
   '';
 
-  nativeBuildInputs = [
-    fontforge
-  ];
+  nativeBuildInputs = [ fontforge ];
 
   buildInputs = [
     libuninameslist
@@ -47,9 +46,7 @@ stdenv.mkDerivation {
     "-Wno-error=sign-conversion"
   ];
 
-  buildFlags = [
-    "gallant.ttf"
-  ];
+  buildFlags = [ "gallant.ttf" ];
 
   installPhase = ''
     runHook preInstall
@@ -65,6 +62,5 @@ stdenv.mkDerivation {
     homepage = "https://github.com/NanoBillion/gallant";
     license = lib.licenses.bsd2;
     maintainers = with lib.maintainers; [ prince213 ];
-    # broken = true;
   };
 }
