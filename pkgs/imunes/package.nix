@@ -4,7 +4,7 @@
   stdenv,
 
   # nativeBuildInputs
-  makeWrapper,
+  makeBinaryWrapper,
 
   # buildInputs
   tcl-8_6,
@@ -26,7 +26,7 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-I43wnE3IviVR5dBOaVyFyDhiWIocczOlmECy1Bq8j0I=";
   };
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [ makeBinaryWrapper ];
 
   makeFlags = [ "PREFIX=$(out)" ];
 
