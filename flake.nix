@@ -25,7 +25,6 @@
       systems = import systems;
       flake = {
         modulePackages.ngbe = ./pkgs/ngbe;
-        nixosModules.default = ./modules/nixos;
         overlays.default =
           final: prev:
           prev.lib.packagesFromDirectoryRecursive {
