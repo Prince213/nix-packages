@@ -1,7 +1,6 @@
 {
   lib,
   fetchFromGitHub,
-  nix-update-script,
   rustPlatform,
 }:
 
@@ -20,11 +19,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   cargoHash = "sha256-7EMH40utzbtT1AB64VRlGDBvPpx0fDrWXpOPf/JS+TE=";
 
-  passthru.updateScript = nix-update-script { };
-
   meta = {
     description = "Typst-friendly static Zettelkästen site generator";
     homepage = "https://github.com/kodama-community/kodama";
+    downloadPage = "https://github.com/kodama-community/kodama/releases";
+    changelog = "https://github.com/kodama-community/kodama/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ prince213 ];
   };
