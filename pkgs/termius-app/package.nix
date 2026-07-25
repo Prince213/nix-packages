@@ -1,19 +1,23 @@
 {
-  alsa-lib,
+  lib,
+  fetchurl,
+  stdenvNoCC,
+
+  # nativeBuildInputs
   autoPatchelfHook,
   dpkg,
-  fetchurl,
+  makeWrapper,
+  unzip,
+
+  # buildInputs
+  alsa-lib,
   gtk3,
-  lib,
   libdrm,
   libGL,
   libgbm,
   libsecret,
-  makeWrapper,
   nss,
-  stdenvNoCC,
   udev,
-  unzip,
 }:
 let
   pname = "termius-app";

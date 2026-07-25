@@ -4,18 +4,22 @@
   src,
   meta,
 
-  alsa-lib,
+  lib,
+  stdenvNoCC,
+
+  # nativeBuildInputs
   autoPatchelfHook,
   dpkg,
+  makeWrapper,
+
+  # buildInputs
+  alsa-lib,
   gtk3,
-  lib,
   libdrm,
   libGL,
   libgbm,
   libsecret,
-  makeWrapper,
   nss,
-  stdenvNoCC,
   udev,
 }:
 

@@ -5,6 +5,8 @@
   meta,
 
   stdenvNoCC,
+
+  # nativeBuildInputs
   unzip,
 }:
 
