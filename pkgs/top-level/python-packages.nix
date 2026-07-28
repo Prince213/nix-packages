@@ -6,4 +6,5 @@ final: _: {
   pytest-structlog = final.callPackage ../development/python-modules/pytest-structlog { };
   redfish = final.callPackage ../development/python-modules/redfish { };
   shoehorn = final.callPackage ../development/python-modules/shoehorn { };
+  urnparse = final.callPackage ../development/python-modules/urnparse { };
 }
