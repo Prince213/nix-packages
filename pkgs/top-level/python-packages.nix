@@ -5,4 +5,5 @@ final: _: {
   mush = final.callPackage ../development/python-modules/mush { };
   pytest-structlog = final.callPackage ../development/python-modules/pytest-structlog { };
   redfish = final.callPackage ../development/python-modules/redfish { };
+  shoehorn = final.callPackage ../development/python-modules/shoehorn { };
 }
