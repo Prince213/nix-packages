@@ -32,7 +32,6 @@ let
     maintainers = with lib.maintainers; [ prince213 ];
     platforms = [
       "aarch64-darwin"
-      "x86_64-darwin"
       "x86_64-linux"
     ];
   };
@@ -43,13 +42,6 @@ let
       src = fetchurl {
         url = "https://web.archive.org/web/20260728134346if_/https://autoupdate.termius.com/mac-arm64/Termius.zip";
         hash = "sha256-FhrjxPk1xMJsKBK3gRbmlzLlKhgDJyytC10FQlaoFAY=";
-      };
-    };
-    x86_64-darwin = {
-      version = "9.41.1";
-      src = fetchurl {
-        url = "https://web.archive.org/web/20260728134353if_/https://autoupdate.termius.com/mac/Termius.zip";
-        hash = "sha256-Kj4PXiuLZguGcczDUTU1lctLrzEdZP1CC6Orpx1vtqs=";
       };
     };
     x86_64-linux = {
