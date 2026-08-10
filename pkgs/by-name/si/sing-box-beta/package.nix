@@ -1,8 +1,11 @@
 {
   sing-box,
+
+  # buildInputs
+  cronet-go-beta,
 }:
 
-sing-box.overrideAttrs (previousAttrs: {
+(sing-box.override { cronet-go = cronet-go-beta; }).overrideAttrs (previousAttrs: {
   pname = previousAttrs.pname + "-beta";
   version = "1.14.0-beta.10";
   __structuredAttrs = true;
