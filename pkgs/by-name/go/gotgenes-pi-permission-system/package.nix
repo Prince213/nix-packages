@@ -51,7 +51,7 @@ buildNpmPackage (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    pnpm --filter=@gotgenes/pi-permission-system deploy $out
+    pnpm --filter=@gotgenes/pi-permission-system --prod deploy $out
 
     runHook postInstall
   '';
