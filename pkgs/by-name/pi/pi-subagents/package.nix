@@ -20,6 +20,8 @@ buildNpmPackage (finalAttrs: {
   npmDepsFetcherVersion = 2;
   npmDepsHash = "sha256-hCdCpS0hTnv4D+8x53fEpbVz5pym9BKHB8bQ7h80XCo=";
 
+  npmInstallFlags = [ "--omit=dev" ];
+
   dontNpmBuild = true;
 
   postInstall = ''
