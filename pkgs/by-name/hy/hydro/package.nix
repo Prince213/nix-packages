@@ -7,6 +7,9 @@
   makeBinaryWrapper,
   nodejs-slim_22,
   yarn-berry_4,
+
+  # passthru
+  nixosTests,
 }:
 let
   nodejs = nodejs-slim_22;
@@ -85,6 +88,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
+  passthru = {
+    tests = { inherit (nixosTests) hydro; };
+  };
 
   meta = {
     description = "Online judge system";
