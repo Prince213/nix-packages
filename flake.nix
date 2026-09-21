@@ -40,6 +40,7 @@
           packages = lib.filterAttrs (_: lib.meta.availableOn { inherit system; }) (
             lib.removeAttrs (overlay (pkgs.extend overlay) pkgs) [
               "linuxKernel"
+              "nixosTests"
               "pythonPackagesExtensions"
             ]
           );
