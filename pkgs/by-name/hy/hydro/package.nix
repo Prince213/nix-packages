@@ -90,7 +90,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   '';
 
   passthru = {
-    tests = { inherit (nixosTests) hydro; };
+    tests = { inherit (nixosTests) hydro hydro-standalone-judge; };
   };
 
   meta = {
