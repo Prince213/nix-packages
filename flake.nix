@@ -21,6 +21,9 @@
       imports = [ treefmt-nix.flakeModule ];
       systems = import systems;
       flake = {
+        nixosModules.default = {
+          imports = import ./nixos/modules/module-list.nix;
+        };
         overlays.default = import ./pkgs/top-level/all-packages.nix;
       };
       perSystem =
