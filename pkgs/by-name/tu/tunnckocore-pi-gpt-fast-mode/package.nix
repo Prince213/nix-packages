@@ -29,8 +29,6 @@ stdenvNoCC.mkDerivation {
       "openai-codex/gpt-6-sol",\
       "openai-codex/gpt-6.1-sol",\
     ' src/index.ts
-
-    substituteInPlace src/index.ts --replace-fail priority fast
   '';
 
   installPhase = ''
