@@ -6,7 +6,7 @@
 
 buildNpmPackage (finalAttrs: {
   pname = "pi-web-access";
-  version = "0.35.0";
+  version = "0.36.0";
 
   __structuredAttrs = true;
 
@@ -14,24 +14,18 @@ buildNpmPackage (finalAttrs: {
     owner = "nicobailon";
     repo = "pi-web-access";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-GOT/Nym/oWLUHoO6zzvWnEeq+pXiTh/QF4VTY4vbT8s=";
+    hash = "sha256-vXdaYGy7GLs1Yg5TXRoO4QFtkN2LR02nDqSnRyqftnM=";
   };
 
   patches = [ ./no-pi-deps.patch ];
 
   npmDepsFetcherVersion = 2;
-  npmDepsHash = "sha256-XhZY0IUXnGAcv/TZcuqJ9JqBrgnf3y3RWRkmaPYAV7g=";
+  npmDepsHash = "sha256-kELQfl9By29yM581To47KnJrPhQFXq/lernNXfihRqc=";
 
-  npmInstallFlags = [ "--omit=peer" ];
   npmPruneFlags = [ "--omit=peer" ];
 
   postBuild = ''
     node scripts/pi-extensions-dist.js dist
-  '';
-
-  postInstall = ''
-    cp -r $out/lib/node_modules/pi-web-access/. $out
-    rm -rf $out/lib
   '';
 
   meta = {
