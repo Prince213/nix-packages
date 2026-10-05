@@ -6,7 +6,7 @@
 
 buildNpmPackage (finalAttrs: {
   pname = "pi-subagents";
-  version = "0.74.0";
+  version = "0.76.0";
 
   __structuredAttrs = true;
 
@@ -14,11 +14,11 @@ buildNpmPackage (finalAttrs: {
     owner = "nicobailon";
     repo = "pi-subagents";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-QKf8Y8x90TLBKy3AkTRUc0+FxXAy/GKkHK2WQL2+a+k=";
+    hash = "sha256-qivnM9c66KGRcKfGILnZc6aRUKFOpN/0/yY0XtYHhuw=";
   };
 
   npmDepsFetcherVersion = 2;
-  npmDepsHash = "sha256-uwNrhoxNS6aa8PftDw4qWtGxKeVnGX4t/tcMoDgEwQY=";
+  npmDepsHash = "sha256-lfDIKjPrnVGL8siETS96uVRabsgwdxT7+TVBX9EkFA4=";
 
   npmBuildScript = "build:pkg";
 
