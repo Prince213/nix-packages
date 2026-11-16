@@ -48,7 +48,7 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://mirroir.dev/";
     downloadPage = "https://github.com/jfarcand/mirroir-mcp/releases";
     changelog = "https://github.com/jfarcand/mirroir-mcp/releases/tag/v${finalAttrs.version}";
-    license = lib.licenses.mit;
+    license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ prince213 ];
     mainProgram = "mirroir-mcp";
     platforms = lib.platforms.darwin;
